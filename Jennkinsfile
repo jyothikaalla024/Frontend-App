@@ -1,8 +1,23 @@
-{
-  "name": "frontend-app",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "mkdir -p build && cp -r public/* build/"
+pipeline {
+  agent any
+
+  stages {
+    stage('Install') {
+      steps {
+        sh 'npm install'
+      }
+    }
+
+    stage('Build') {
+      steps {
+        sh 'echo "Static frontend build completed"'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        echo 'Deploy to S3 + CloudFront'
+      }
+    }
   }
 }
-
