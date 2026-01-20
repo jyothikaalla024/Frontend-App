@@ -1,18 +1,6 @@
 pipeline {
     agent any
-    tools {
-        // Use the exact name you gave it in Global Tool Configuration
-        nodejs 'NodeJS_20' 
-    }
-    stages {
-        stage('Build Frontend') {
-            steps {
-                echo 'Building frontend...'
-                sh 'npm install'
-                sh 'npm run build'
-            }
-        }
-    }
+    
     environment {
         AWS_DEFAULT_REGION = 'us-east-1'
         S3_BUCKET = 'aws-devops-frontend'
