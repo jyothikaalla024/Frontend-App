@@ -1,6 +1,5 @@
 
- 
-const API_BASE_URL = "https://api.amznpro.online";
+ const API_BASE_URL = "https://api.amznpro.online";
  
 async function loadUsers() {
 
