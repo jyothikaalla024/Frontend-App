@@ -1,5 +1,7 @@
 
-const API_BASE_URL = "http://amznpro.online"; 
+const API_BASE_URL = window.location.origin;
+
+
 
 // Change to https://mbry.digital when deployed
  
