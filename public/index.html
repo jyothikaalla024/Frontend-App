@@ -1,44 +1,53 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AWS Microservices App</title>
-</head>
- 
-<body>
-<h1>AWS DevOps Microservices Project By Nexgen Team</h1>
- 
-  <hr/>
- 
-  <h2>Register</h2>
-<input type="text" id="regName" placeholder="Name" /><br/><br/>
-<input type="email" id="regEmail" placeholder="Email" /><br/><br/>
-<input type="password" id="regPassword" placeholder="Password" /><br/><br/>
-<button onclick="registerUser()">Register</button>
- 
-  <hr/>
- 
-  <h2>Login</h2>
-<input type="email" id="loginEmail" placeholder="Email" /><br/><br/>
-<input type="password" id="loginPassword" placeholder="Password" /><br/><br/>
-<button onclick="loginUser()">Login</button>
- 
-  <hr/>
- 
-  <h2>Other Services</h2>
-<button onclick="loadUsers()">Load Users</button>
-<button onclick="loadOrders()">Load Orders</button>
- 
-  <hr/>
- 
-  <pre id="result"></pre>
- 
-<script src="app.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    
+    <title>AWS Microservices App</title>
 
- 
+    <link rel="icon" href="data:,">
+
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        input { padding: 8px; width: 250px; margin-bottom: 10px; }
+        button { padding: 10px 20px; cursor: pointer; background-color: #232f3e; color: white; border: none; border-radius: 4px; }
+        button:hover { background-color: #37475a; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+
+<body>
+    <h1>AWS DevOps Microservices Project By Nexgen Team</h1>
+
+    <hr/>
+
+    <h2>Register</h2>
+    <input type="text" id="regName" placeholder="Name" /><br/>
+    <input type="email" id="regEmail" placeholder="Email" /><br/>
+    <input type="password" id="regPassword" placeholder="Password" /><br/>
+    <button onclick="registerUser()">Register</button>
+
+    <hr/>
+
+    <h2>Login</h2>
+    <input type="email" id="loginEmail" placeholder="Email" /><br/>
+    <input type="password" id="loginPassword" placeholder="Password" /><br/>
+    <button onclick="loginUser()">Login</button>
+
+    <hr/>
+
+    <h2>Other Services</h2>
+    <button onclick="loadUsers()">Load Users</button>
+    <button onclick="loadOrders()">Load Orders</button>
+
+    <hr/>
+
+    <h2>Output:</h2>
+    <pre id="result">Results will appear here...</pre>
+
+    <script src="app.js"></script>
 
 </body>
 </html>
-
- 
