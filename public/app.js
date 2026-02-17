@@ -1,9 +1,4 @@
 const API_BASE_URL = "https://api.amznpro.online";
-
-
-
-
-// Change to https://mbry.digital when deployed
  
 // ================= REGISTER =================
 
