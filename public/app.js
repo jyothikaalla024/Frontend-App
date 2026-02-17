@@ -1,4 +1,4 @@
-const API_BASE_URL = "//api.amznpro.online";
+const API_BASE_URL = "http://api.amznpro.online";
  
 // ================= REGISTER =================
 
@@ -10,7 +10,7 @@ async function registerUser() {
 
   const password = document.getElementById("regPassword").value;
  
-  const res = await fetch(`${"https://amznpro.online"}/register`, {
+  const res = await fetch("https://amznpro.online/register"),{
 
     method: "POST",
 
