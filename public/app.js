@@ -1,5 +1,5 @@
+const API_BASE_URL = "https://amznpro.online";
 
-const API_BASE_URL = window.location.origin;
 
 
 
