@@ -1,55 +1,52 @@
-const API_BASE_URL = "http://localhost:4000"; 
-// Change to https://mbry.digital when deployed
- 
-// ================= REGISTER =================
-async function registerUser() {
-  const name = document.getElementById("regName").value;
-  const email = document.getElementById("regEmail").value;
-  const password = document.getElementById("regPassword").value;
- 
-  const res = await fetch(`${API_BASE_URL}/register`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name, email, password }),
-  });
- 
-  const data = await res.json();
-  document.getElementById("result").innerText =
-    JSON.stringify(data, null, 2);
-}
- 
-// ================= LOGIN =================
-async function loginUser() {
-  const email = document.getElementById("loginEmail").value;
-  const password = document.getElementById("loginPassword").value;
- 
-  const res = await fetch(`${API_BASE_URL}/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
-  });
- 
-  const data = await res.json();
-  document.getElementById("result").innerText =
-    JSON.stringify(data, null, 2);
-}
- 
-// ================= LOAD USERS =================
-async function loadUsers() {
-  const res = await fetch(`${API_BASE_URL}/users`);
-  const data = await res.json();
-  document.getElementById("result").innerText =
-    JSON.stringify(data, null, 2);
-}
- 
-// ================= LOAD ORDERS =================
-async function loadOrders() {
-  const res = await fetch(`${API_BASE_URL}/orders`);
-  const data = await res.json();
-  document.getElementById("result").innerText =
-    JSON.stringify(data, null, 2);
-}
+const express = require('express');
+const app = express();
+const PORT = 4000;
+
+app.use(express.json());
+
+// ---------------- REGISTER ----------------
+app.post('/register', (req, res) => {
+    const { name, email, password } = req.body;
+    console.log("Received registration:", req.body);
+
+    // In a real app, you'd save to a database
+    res.json({ message: `${name} registered successfully!` });
+});
+
+// ---------------- LOGIN ----------------
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    console.log("Login attempt:", req.body);
+
+    // Dummy login check
+    if (email === "test@example.com" && password === "1234") {
+        res.json({ message: "Login successful!" });
+    } else {
+        res.json({ message: "Invalid email or password." });
+    }
+});
+
+// ---------------- LOAD USERS ----------------
+app.get('/users', (req, res) => {
+    // Dummy user list
+    const users = [
+        { name: "Alice", email: "alice@example.com" },
+        { name: "Bob", email: "bob@example.com" },
+    ];
+    res.json(users);
+});
+
+// ---------------- LOAD ORDERS ----------------
+app.get('/orders', (req, res) => {
+    // Dummy orders list
+    const orders = [
+        { id: 1, item: "Laptop", quantity: 1 },
+        { id: 2, item: "Phone", quantity: 2 },
+    ];
+    res.json(orders);
+});
+
+// ---------------- START SERVER ----------------
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
