@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:4000"; 
+const API_BASE_URL = "https://localhost:4000"; 
 // Change to https://mbry.digital when deployed
  
 // ================= REGISTER =================
