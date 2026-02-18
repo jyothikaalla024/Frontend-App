@@ -9,8 +9,10 @@ async function registerUser() {
   const res = await fetch(`${API_BASE_URL}/register`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
-    },
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer YOUR_API_KEY'
+},
+
     body: JSON.stringify({ name, email, password }),
   });
 
