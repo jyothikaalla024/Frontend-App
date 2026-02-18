@@ -1,67 +1,86 @@
-// ================= MOCK DATA =================
-let users = [];
-let orders = [
-  { id: 1, item: "Laptop", user: "alice@example.com" },
-  { id: 2, item: "Phone", user: "bob@example.com" },
-];
+const API_BASE_URL = "https://api.amznpro.online";
 
-// Helper to update result box
-function showResult(data) {
-  document.getElementById("result").innerText = JSON.stringify(data, null, 2);
+// ================= HELPERS =================
+async function safeFetch(url, options = {}) {
+    try {
+        const res = await fetch(url, options);
+
+        if (!res.ok) {
+            // Show HTTP error
+            document.getElementById("result").innerText =
+                `Error ${res.status}: ${res.statusText}`;
+            return null;
+        }
+
+        // Try parsing JSON
+        try {
+            const data = await res.json();
+            return data;
+        } catch (err) {
+            document.getElementById("result").innerText =
+                "Error parsing JSON: " + err;
+            return null;
+        }
+
+    } catch (err) {
+        document.getElementById("result").innerText =
+            "Network error: " + err;
+        return null;
+    }
 }
 
 // ================= REGISTER =================
-function registerUser() {
-  const name = document.getElementById("regName").value;
-  const email = document.getElementById("regEmail").value;
-  const password = document.getElementById("regPassword").value;
+async function registerUser() {
+    const name = document.getElementById("regName").value;
+    const email = document.getElementById("regEmail").value;
+    const password = document.getElementById("regPassword").value;
 
-  if (!name || !email || !password) {
-    showResult({ success: false, message: "All fields are required!" });
-    return;
-  }
+    // Optional: Use mock response if API blocked
+    const useMock = false; // set true for testing without server
+    if (useMock) {
+        const mockData = { success: true, message: `Registered ${name} (${email})` };
+        document.getElementById("result").innerText = JSON.stringify(mockData, null, 2);
+        return;
+    }
 
-  if (users.find(u => u.email === email)) {
-    showResult({ success: false, message: "User already registered!" });
-    return;
-  }
+    const data = await safeFetch(`${API_BASE_URL}/register`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer YOUR_API_KEY" // remove if not required
+        },
+        body: JSON.stringify({ name, email, password })
+    });
 
-  users.push({ name, email, password });
-  showResult({ success: true, message: `Registered ${name} (${email}) successfully!` });
-
-  // Clear input fields
-  document.getElementById("regName").value = "";
-  document.getElementById("regEmail").value = "";
-  document.getElementById("regPassword").value = "";
+    if (data) {
+        document.getElementById("result").innerText = JSON.stringify(data, null, 2);
+    }
 }
 
 // ================= LOGIN =================
-function loginUser() {
-  const email = document.getElementById("loginEmail").value;
-  const password = document.getElementById("loginPassword").value;
+async function loginUser() {
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
 
-  const user = users.find(u => u.email === email && u.password === password);
-  if (user) {
-    showResult({ success: true, message: `Welcome back, ${user.name}!` });
-  } else {
-    showResult({ success: false, message: "Invalid email or password!" });
-  }
+    const data = await safeFetch(`${API_BASE_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+    });
 
-  document.getElementById("loginEmail").value = "";
-  document.getElementById("loginPassword").value = "";
+    if (data) {
+        document.getElementById("result").innerText = JSON.stringify(data, null, 2);
+    }
 }
 
 // ================= LOAD USERS =================
-function loadUsers() {
-  if (users.length === 0) {
-    showResult({ message: "No users registered yet." });
-  } else {
-    const safeUsers = users.map(u => ({ name: u.name, email: u.email }));
-    showResult(safeUsers);
-  }
+async function loadUsers() {
+    const data = await safeFetch(`${API_BASE_URL}/users`);
+    if (data) document.getElementById("result").innerText = JSON.stringify(data, null, 2);
 }
 
 // ================= LOAD ORDERS =================
-function loadOrders() {
-  showResult(orders);
-}
+async function loadOrders() {
+    const data = await safeFetch(`${API_BASE_URL}/orders`);
+    if (data) document.getElementById("result").innerText = JSON.stringify(data, null, 2);
+}  this is my app .js file
