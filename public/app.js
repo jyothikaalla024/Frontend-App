@@ -83,4 +83,4 @@ async function loadUsers() {
 async function loadOrders() {
     const data = await safeFetch(`${API_BASE_URL}/orders`);
     if (data) document.getElementById("result").innerText = JSON.stringify(data, null, 2);
-}  this is my app .js file
+}  
