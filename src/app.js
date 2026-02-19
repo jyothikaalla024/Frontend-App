@@ -23,7 +23,7 @@ async function loginUser() {
   const email = document.getElementById("loginEmail").value;
   const password = document.getElementById("loginPassword").value;
 
-  const res = await fetch(`${API_BASE_URL}/login`, {
+  const res = await fetch("https://microservices-alb-1601462659.us-east-1.elb.amazonaws.com/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
