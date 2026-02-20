@@ -8,7 +8,8 @@ async function registerUser() {
   try {
     console.log("Attempting to connect to:", `${API_BASE_URL}/register`);
     
-    const res = await fetch(`${API_BASE_URL}/register`, {
+    const res = await fetch('http://127.0.0.1:4000/users')
+{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
