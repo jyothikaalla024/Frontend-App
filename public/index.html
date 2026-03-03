@@ -203,7 +203,7 @@ hr {
         // Load orders (from order service)
         async function loadOrders() {
             try {
-                const res = await fetch(`${ORDER_SERVICE_URL}/orders`);
+                const res = await fetch("https://api.amznpro.online/orders");
                 const data = await res.json();
                 displayResult(data);
                 // Also update the order list if you want
